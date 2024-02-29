@@ -7,11 +7,11 @@ public class SimpleGameSetup implements GameSetup {
 		int numberOfWarriors = nKnights + nBraveKnights;
 		
 		for (int i = 0; i < nKnights; ++i){
-			knights[i] = new Knight(80, new Sword(i));
+			knights[i] = new Knight(80, new IronSword(i));
 		}
 
 		for (int i = nKnights; i < numberOfWarriors; ++i) {
-			knights[i] = new BraveKnight(100, new Sword(i));
+			knights[i] = new BraveKnight(100, new LightSword(i));
 		}
 
 		for (int i = 0; i < nBadOgres; ++i) {

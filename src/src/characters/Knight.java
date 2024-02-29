@@ -4,7 +4,7 @@ public class Knight implements Energy {
 	private int energy;
 	private int additionalEnergy;
 	
-	private Sword sword;
+	protected Sword sword;
 
 	public Knight() {
 	}
@@ -30,7 +30,8 @@ public class Knight implements Energy {
 	}
 
 	public void attack(Ogre ogre) {
-		ogre.setEnergy ((int) (0.9 * ogre.getEnergy()));
+		sword.hit(this, ogre);
+
 		ogre.revenge(this);
 	}
 

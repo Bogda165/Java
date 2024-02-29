@@ -7,14 +7,15 @@ public class RandomGameSetup implements GameSetup{
 
         while(numberOfWarriors != -1){
             Random rand = new Random();
-            int random = rand.nextInt(2);
-            if(random == 0){
-                knights[numberOfWarriors] = new Knight(80, new Sword(numberOfWarriors));
+            int random = rand.nextInt(3);
+            if(random == 0) {
+                knights[numberOfWarriors] = new FatKnight(80, new HeavySword(numberOfWarriors));
+            }else if(random == 1) {
+                knights[numberOfWarriors] = new Knight(80, new IronSword(numberOfWarriors));
+            }else{
+                knights[numberOfWarriors] = new BraveKnight(100, new LightSword(numberOfWarriors));
             }
-            else{
-                knights[numberOfWarriors] = new BraveKnight(100, new Sword(numberOfWarriors));
-            }
-
+            random = rand.nextInt(2);
             if(random == 0){
                 ogres[numberOfWarriors] = new Ogre(100);
             }
