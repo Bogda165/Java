@@ -19,27 +19,14 @@ public class Game {
 		return being1.getEnergy() - being2.getEnergy();
 	}
 
-	public Game(int nKnights, int nBraveKnights, int nBadOgres) {
+	public Game(int nKnights, int nBraveKnights, int nBadOgres, GameSetup gameSetup) {
 		numberOfWarriors = nKnights + nBraveKnights;
 		knights = new Knight[numberOfWarriors];
 		ogres = new Ogre[numberOfWarriors];
 
-		for (int i = 0; i < nKnights; ++i){
-			knights[i] = new Knight(80, new Sword(i));
-		}
-
-		for (int i = nKnights; i < numberOfWarriors; ++i) {
-			knights[i] = new BraveKnight(100, new Sword(i));
-		}
-
-		for (int i = 0; i < nBadOgres; ++i) {
-			ogres[i] = new BadOgre(100);
-		}
-		
-		for (int i = nBadOgres; i < numberOfWarriors; ++i) {
-			ogres[i] = new Ogre(100);
-		}
+		gameSetup.setup(knights, ogres, nKnights, nBraveKnights, nBadOgres);
 	}
+
 
 	public String clash() {
 		String report = "";
@@ -67,7 +54,7 @@ public class Game {
 	}	
 
 	public static void main(String[] args) {
-		Game game = new Game(7, 3, 5);
+		Game game = new Game(7, 3, 5, new RandomGameSetup());
 		
 		game.followClash(new ClashWinners(game));
 		game.followClash(new ClashWinners(game)); // another observer of the same kind
